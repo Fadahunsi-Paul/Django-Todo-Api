@@ -24,3 +24,9 @@ class TestModel(APITestCase):
         user = User()
         result = user.token
         self.assertEqual(result,'')
+
+    def test_create_superuser(self):
+        user = User.objects
+        superuser = user.create_superuser(email='fada@gmail.com',password='password80')
+        self.assertTrue(superuser.is_staff)
+        self.assertTrue(superuser.is_superuser)
