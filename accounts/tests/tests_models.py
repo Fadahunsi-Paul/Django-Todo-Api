@@ -19,3 +19,8 @@ class TestModel(APITestCase):
         user = User()
         outcome = user.__str__()
         self.assertEqual(outcome, '') #checks if the returned value is an empty string
+
+    def test_token_property(self):
+        user = User()
+        result = user.token
+        self.assertEqual(result,'')
