@@ -1,0 +1,8 @@
+[run]
+source = accounts/,api/,
+
+omit =
+    venv
+    */migrations/*
+    */tests/*
+    */__init__.py 

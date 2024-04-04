@@ -7,4 +7,4 @@ class TimeBaseModel(models.Model):
 
     class Meta:
         ordering = ("created_at") #ascending order
-        abstract = True
+        abstract = True #Dont create db table

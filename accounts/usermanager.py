@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 class CustomUserManager(BaseUserManager):
-    def _create_user(self, email, password, **extra_fields):
+    def create_user(self, email, password, **extra_fields):
         """
         Create and save a user with the given username, email, and password.
         """
@@ -17,7 +17,7 @@ class CustomUserManager(BaseUserManager):
         if not "@" and ".com" in email:
             raise ValueError(_("Email Should Contain @ and .com"))
         user = self.model(email=self.normalize_email(email), **extra_fields)
-        user.password = make_password(password)
+        user.set_password(password)
         user.save(using=self._db)
         return user 
 
