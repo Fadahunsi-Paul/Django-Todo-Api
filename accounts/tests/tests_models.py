@@ -30,3 +30,23 @@ class TestModel(APITestCase):
         superuser = user.create_superuser(email='fada@gmail.com',password='password80')
         self.assertTrue(superuser.is_staff)
         self.assertTrue(superuser.is_superuser)
+
+    def test_raise_error_message_when_no_email_set(self):
+        with self.assertRaisesMessage(ValueError,'The Email Must be set'):
+            User.objects.create_user(email='', password='password45')
+
+    def test_raise_error_message_when_no_password_provided(self):
+        with self.assertRaisesMessage(ValueError,'The password Must be provided'):
+            User.objects.create_user(email='fada@gmail.com', password='')
+
+    def test_raise_error_message_when_password_less_than_eight(self):
+        with self.assertRaisesMessage(ValueError,'Password should be more than 8 Characters'):
+            User.objects.create_user(email='fada@gmail.com', password='less')
+
+    def test_create_superuser_without_is_staff(self):
+        with self.assertRaisesMessage(ValueError,'Superuser must have is_staff=True'):
+            User.objects.create_superuser(email='fada@gmail.com', password='password45', is_staff=False)
+
+    def test_create_superuser_without_is_superuser(self):
+        with self.assertRaisesMessage(ValueError,'Superuser must have is_superuser=True'):
+            User.objects.create_superuser(email='fada@gmail.com', password='password45', is_superuser=False)
