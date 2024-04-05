@@ -9,7 +9,7 @@ class CustomUserManager(BaseUserManager):
         Create and save a user with the given username, email, and password.
         """
         if not email:
-            raise ValueError("The Email Must be set")
+            raise ValueError("The Email Must be set") 
         if not password:
             raise ValueError(_("The password Must be provided"))
         if len(password) < 8:
