@@ -4,8 +4,10 @@ from Todo_Api.basemodel import TimeBaseModel
 from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone 
+from datetime import datetime,timedelta
 from .usermanager import CustomUserManager
-
+import jwt
+from django.conf import settings
 
 class User(AbstractUser):
     username = None 
@@ -44,7 +46,10 @@ class User(AbstractUser):
     
     @property 
     def token(self):
-        return ""
+        token=jwt.encode(
+            {'email':self.email,'exp':datetime.utcnow() + timedelta(hours=24)},settings.SECRET_KEY,
+            algorithm='HS256')
 
+        return token
 
 
