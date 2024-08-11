@@ -13,10 +13,10 @@ class Todo(TimeBaseModel):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     description = models.TextField()
-    status = models.CharField('STATUS',on_delete = models.CASCADE)
+    status = models.CharField('STATUS',max_length=50)
 
     def __str__(self):
         return f'{self.user.email} created {self.title}'
 
     class Meta:
-        ordering = ('title') 
+        ordering = ["title"]
