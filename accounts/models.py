@@ -36,7 +36,7 @@ class User(AbstractUser):
     last_joined = models.DateTimeField(_("Last Joined"), auto_now_add=True)
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ["username"]
+    REQUIRED_FIELDS = []
 
     objects = CustomUserManager()
     
